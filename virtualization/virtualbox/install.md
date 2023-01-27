@@ -51,7 +51,6 @@ VBoxManage storageattach Ubuntu_2204 \
 --type dvddrive \
 --medium /home/ubuntu-22.04-live-server-amd64.iso
 ```
-
 # Verificando a configuração da VM Criada
 ```sh
 VBoxManage showvminfo Ubuntu_2204
@@ -60,3 +59,26 @@ VBoxManage showvminfo Ubuntu_2204
 ```sh
 VBoxManage storageattach Ubuntu_2204 --storagectl Ubuntu_2204_SATA --port 0 --device 0 --medium none
 ```
+# Instalando o GuestAddition para o Virtualbox do Host
+ - Execute o Apt
+```
+apt -y install virtualbox-guest-additions-iso
+```
+ - Agora instalar o VBoxGuestAdditions para a VM
+```
+VBoxManage storageattach Ubuntu_2204 \
+--storagectl Ubuntu_2204_SATA \
+--port 0 \
+--type dvddrive \
+--medium /usr/share/virtualbox/VBoxGuestAdditions.iso
+```
+# install required packages first
+ - Inicie a VM e efetue o login nela para instalar o **GuestAdditions**. Dentro da VM execute esses comando abaixo:
+```
+LINUX_HEADERS=$(uname -r)
+apt -y install gcc make bzip2 linux-headers-$LINUX_HEADERS
+mount /dev/cdrom /mnt
+cd /mnt
+/mnt# ./VBoxLinuxAdditions.run
+```
+ - Agora é so reinicar a VM que já vai estar instalado com sucesso. Para reinicar é só digigar o comando `reboot`.
