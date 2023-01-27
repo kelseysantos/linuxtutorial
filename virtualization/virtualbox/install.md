@@ -59,6 +59,10 @@ VBoxManage showvminfo Ubuntu_2204
 ```sh
 VBoxManage storageattach Ubuntu_2204 --storagectl Ubuntu_2204_SATA --port 0 --device 0 --medium none
 ```
+### Start a VM
+```sh
+VBoxManage startvm Ubuntu_2204 --type headless
+```
 ### Instalando o GuestAddition para o Virtualbox do Host
  - Execute o Apt
 ```
