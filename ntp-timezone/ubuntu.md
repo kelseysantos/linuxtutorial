@@ -53,7 +53,7 @@ timedatectl timesync-status
 nano /etc/timezone
 ```
 ```markdown
-#coloca para região de MatoGrosso.
+#Apagar o padrão **ETC/UTC** e coloca para região de MatoGrosso.
 America/Cuiaba
 ```
 ```
