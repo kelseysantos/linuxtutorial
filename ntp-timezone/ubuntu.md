@@ -26,7 +26,7 @@ systemctl status ntp
 ntpq -p
 ```
 
-# Configure Timezone in Ubuntu 22.04
+# Configure NTPClient para sincronização no Ubuntu 22.04
  - Verificar o Status do NTP Server
 ```
 systemctl status systemd-timesyncd
@@ -37,11 +37,36 @@ nano /etc/systemd/timesyncd.conf
 ```
  - Adiciona na linha NTP o seu servidor NTP da internet ou internamente.
 ```markdown
-# Adiciona no final da Linha ou 
+# Adiciona no final da Linha ou altera onde está NTP=
 [Time]
 NTP=a.st1.ntp.br
 ```
  - Restart o Serviço Timesyncd
+```sh
+systemctl restart systemd-timesyncd
+#verificar agora o Status
+timedatectl timesync-status
 ```
-systemctl restart systemd-timesyncd && timedatectl timesync-status
+## Agora o Timezone
+ - Configure o Timezone do servidor ou Desktop Ubuntu, siga os comandos abaixo:
+```
+nano /etc/timezone
+```
+```markdown
+#coloca para região de MatoGrosso.
+America/Cuiaba
+```
+```
+timedatectl set-timezone America/Cuiaba
+```
+ - Verificando a mudança se está correta.
+```
+root@kelseysantos:~# timedatectl 
+               Local time: Fri 2023-02-03 16:18:46 -04
+           Universal time: Fri 2023-02-03 20:18:46 UTC
+                 RTC time: Fri 2023-02-03 20:18:56
+                Time zone: America/Cuiaba (-04, -0400)
+System clock synchronized: yes
+              NTP service: active
+          RTC in local TZ: no
 ```
