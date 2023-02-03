@@ -49,11 +49,13 @@ timedatectl timesync-status
 ```
 ## Agora o Timezone
  - Configure o Timezone do servidor ou Desktop Ubuntu, siga os comandos abaixo:
-```
+```sh
 nano /etc/timezone
+#Verificar a lista de Timezones
+timedatectl list-timezones
 ```
 ```markdown
-#Apagar o padrão **ETC/UTC** e coloca para região de MatoGrosso.
+#Apagar o padrão **Etc/UTC** e coloca para região de MatoGrosso.
 America/Cuiaba
 ```
 ```
