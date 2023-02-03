@@ -18,13 +18,13 @@ pool b.st1.ntp.br iburst
 restrict 10.0.0.0 mask 255.255.255.0 nomodify notrap
 ```
  - Restart o Serviço e verifica se está funcionando.
-```sh
+~~~shell
 systemctl restart ntp
 #verificar status
 systemctl status ntp
 #Mostrar Serviço NTP
 ntpq -p
-```
+~~~
 
 # Configure NTPClient para sincronização no Ubuntu 22.04
  - Verificar o Status do NTP Server
