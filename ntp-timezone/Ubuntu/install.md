@@ -25,7 +25,6 @@ systemctl status ntp
 #Mostrar Serviço NTP
 ntpq -p
 ~~~
-
 # Configure NTPClient para sincronização no Ubuntu 22.04
  - Verificar o Status do NTP Server
 ```
@@ -72,3 +71,12 @@ System clock synchronized: yes
               NTP service: active
           RTC in local TZ: no
 ```
+~~~javascript
+Esta é uma linha de código em Javascript.
+~~~
+~~~php
+Esta é uma linha de código em PHP.
+~~~
+~~~html
+Esta é uma linha de código em HTML.
+~~~
