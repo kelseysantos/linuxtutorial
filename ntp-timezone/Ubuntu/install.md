@@ -18,7 +18,7 @@ pool b.st1.ntp.br iburst
 restrict 10.0.0.0 mask 255.255.255.0 nomodify notrap
 ```
  - Restart o Serviço e verifica se está funcionando.
-~~~shell
+~~~markdown
 systemctl restart ntp
 #verificar status
 systemctl status ntp
