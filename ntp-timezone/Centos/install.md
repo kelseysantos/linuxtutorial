@@ -1,8 +1,8 @@
 # Instalar o NTP Server no CentOS
  - Instalando e configurando o serviço Chrony.
-```sh
-[root@kelseysantos ~]# dnf -y install chrony
-[root@kelseysantos ~]# vi /etc/chrony.conf
+```markdown
+dnf -y install chrony
+vi /etc/chrony.conf
 # Linha 3 : Alterar o servidor para syncronização
 # need NTP server itself to sync time with other NTP server
 #pool 2.centos.pool.ntp.org iburst
@@ -15,15 +15,15 @@ allow 10.0.0.0/24
 ```
  - Habilitando o serviço Chronyd.
 ```
-[root@kelseysantos ~]# systemctl enable --now chronyd
+systemctl enable --now chronyd
 ```
  - Caso esteja usando firewall colocar as seguintes regras.
 ```
-[root@kelseysantos ~]# firewall-cmd --add-service=ntp
+firewall-cmd --add-service=ntp
 
-[root@kelseysantos ~]# firewall-cmd --runtime-to-permanent
+firewall-cmd --runtime-to-permanent
 ```
  - Verificando se o serviço está rodando normalmente.
 ```
-[root@kelseysantos ~]# chronyc sources
+chronyc sources
 ```
