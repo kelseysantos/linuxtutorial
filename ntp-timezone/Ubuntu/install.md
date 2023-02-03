@@ -71,12 +71,3 @@ System clock synchronized: yes
               NTP service: active
           RTC in local TZ: no
 ```
-~~~javascript
-Esta é uma linha de código em Javascript.
-~~~
-~~~php
-Esta é uma linha de código em PHP.
-~~~
-~~~html
-Esta é uma linha de código em HTML.
-~~~
