@@ -1,6 +1,6 @@
 # Configurações de Rede Ubuntu
 
-```sh=
+```shell=
 network:
   ethernets:
     # interface name
