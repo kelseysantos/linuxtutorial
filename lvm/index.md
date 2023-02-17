@@ -1,4 +1,4 @@
-# Tutorial de como trabalhar com LVM
+# How To work with LVM
 
  - Creating Physical Volumes, Volume Groups, and Logical Volumes, To create physical volumes on top of /dev/sdb, /dev/sdc, and /dev/sdd, do:
 ```shell
@@ -67,9 +67,11 @@ mkdir /home/backups
 > and insert the corresponding entries in /etc/fstab (make sure to use the UUIDs obtained before):
 >
 > UUID=b85df913-580f-461c-844f-546d8cde4646 /home/projects	ext4 defaults 0 0
+>
 > UUID=e1929239-5087-44b1-9396-53e09db6eb9e /home/backups ext4	defaults 0 0
  - Then save the changes and mount the LVs:
 ```
 mount -a
 mount | grep home
 ```
+[FONTE](https://www.tecmint.com/manage-and-create-lvm-parition-using-vgcreate-lvcreate-and-lvextend/)
