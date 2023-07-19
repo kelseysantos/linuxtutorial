@@ -11,7 +11,7 @@ openssl genrsa -aes256 -out ca-key.pem 4096
 ```
 2. Gerar um Certificado CA público
 ```bash
-openssl req -new -x509 -sha256 -days 365 -key ca-key.pem -out ca.pem
+openssl req -new -x509 -sha256 -days 3650 -key ca-key.pem -out ca.pem
 ```
 
 ### Etapa Opcional: Visualizar o Conteúdo do Certificado
@@ -27,11 +27,11 @@ openssl genrsa -out cert-key.pem 4096
 ```
 2. Criar uma Solicitação de Assinatura de Certificado (CSR)
 ```bash
-openssl req -new -sha256 -subj "/CN=seucn" -key cert-key.pem -out cert.csr
+openssl req -new -sha256 -subj "/CN=kelseysantos" -key cert-key.pem -out cert.csr
 ```
 3. Criar um `extfile` com todos os nomes alternativos
 ```bash
-echo "subjectAltName=DNS:seu-registro-dns,IP:257.10.10.1" >> extfile.cnf
+echo "subjectAltName=DNS:*.kelseysantos.local*,IP:10.0.0.1" >> extfile.cnf
 ```
 ```bash
 # opcional
@@ -39,7 +39,7 @@ echo extendedKeyUsage = serverAuth >> extfile.cnf
 ```
 4. Criar o certificado
 ```bash
-openssl x509 -req -sha256 -days 365 -in cert.csr -CA ca.pem -CAkey ca-key.pem -out cert.pem -extfile extfile.cnf -CAcreateserial
+openssl x509 -req -sha256 -days 3650 -in cert.csr -CA ca.pem -CAkey ca-key.pem -out cert.pem -extfile extfile.cnf -CAcreateserial
 ```
 
 ## Formatos de Certificado
