@@ -120,3 +120,12 @@ Os passos exatos variam de dispositivo para dispositivo, mas aqui está um guia 
 5. Localize o arquivo de certificado `ca.pem` em seu Cartão SD/Armazenamento Interno usando o gerenciador de arquivos.
 6. Selecione para carregá-lo.
 7. Concluído!"
+
+
+## Guia de Referência de Segurança SSL
+### Versão do TLS e Cifras
+Analisar a Versão do TLS e Cifras Suportadas: `nmap --script ssl-enum-ciphers <alvo>`
+
+Ferramenta | Link | Descrição
+---|---|---
+Qualys SSL Labs | https://www.ssllabs.com/projects/index.html | Ferramentas de Segurança SSL da Qualys
