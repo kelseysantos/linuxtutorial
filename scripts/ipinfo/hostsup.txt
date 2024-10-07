@@ -1,0 +1,12 @@
+Enderecos IPs UP
+{
+  "ip": "177.201.17.210",
+  "city": "Dourados",
+  "region": "Mato Grosso do Sul",
+  "country": "BR",
+  "loc": "-22.2211,-54.8056",
+  "org": "AS8167 V tal",
+  "postal": "79800-000",
+  "timezone": "America/Campo_Grande"
+} 
+##############################################################

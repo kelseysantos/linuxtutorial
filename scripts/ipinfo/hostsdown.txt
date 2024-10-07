@@ -1,0 +1,23 @@
+Enderecos IPs Downs
+{
+  "ip": "201.49.164.123",
+  "city": "Cuiabá",
+  "region": "Mato Grosso",
+  "country": "BR",
+  "loc": "-15.5961,-56.0967",
+  "org": "AS28602 CENTRO DE PROC. DE DADOS DO ESTADO DE MATO GROSSO",
+  "postal": "78000-000",
+  "timezone": "America/Cuiaba"
+} 
+#######################################################################################
+{
+  "ip": "177.47.115.74",
+  "city": "Rio de Janeiro",
+  "region": "Rio de Janeiro",
+  "country": "BR",
+  "loc": "-22.9064,-43.1822",
+  "org": "AS28271 DataCorpore Serviços e Representações",
+  "postal": "20000-000",
+  "timezone": "America/Sao_Paulo"
+} 
+##############################################################

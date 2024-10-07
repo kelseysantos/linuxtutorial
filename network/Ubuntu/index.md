@@ -73,3 +73,17 @@ systemctl restart NetworkManager
 ```shell
 chattr +i /etc/resolv.conf
 ```
+
+# Procedimento para não atualizar o resolv.conf
+
+Executar os seguintes comandos e reinicar o host
+```shell
+systemctl stop apparmor; systemctl disable apparmor;systemctl stop systemd-resolved.service; systemctl disable systemd-resolved.service
+
+rm /etc/resolv.conf;nano /etc/resolv.conf
+
+# inserir os nameserver desejado
+nameserver 1.1.1.1
+nameserver 8.8.8.8
+search home.local
+```
