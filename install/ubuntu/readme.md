@@ -8,27 +8,31 @@ Atualização do Systema
 ```shell
 echo "alias update='apt clean;apt update -y;apt full-upgrade -y;apt upgrade -y;apt autoremove -y'" >> /root/.bashrc;apt clean;apt update -y;apt full-upgrade -y;apt upgrade -y;apt autoremove -y
 ```
+Pacotes Necessários
+```shell
+apt install -y iputils-ping mtr nano cron vim
+```
 Desabilitar o Swap
 ```shell
 swapoff -a;sed -i '/\/swap.img/s/^/#/' /etc/fstab
 ```
 Desativar Serviços
 ```shell
-systemctl stop apparmor; systemctl disable apparmor;systemctl stop systemd-resolved.service; systemctl disable systemd-resolved.service
+systemctl stop apparmor && systemctl disable apparmor && systemctl stop systemd-resolved.service && systemctl disable systemd-resolved.service
 ```
 Configurando o Resolv.conf
 ```shell
-rm -frv /etc/resolv.conf;echo "nameserver 10.8.4.9" >> /etc/resolv.conf;echo "nameserver 10.8.4.10" >> /etc/resolv.conf;echo "search pcmt.local" >> /etc/resolv.conf
+rm -frv /etc/resolv.conf && echo "nameserver 10.8.4.9" >> /etc/resolv.conf && echo "nameserver 10.8.4.10" >> /etc/resolv.conf && echo "search pcmt.local" >> /etc/resolv.conf
 ```
-Configurado o NETPLAN Network
-Ubuntu01
+### Configurado o NETPLAN Network
+Ubuntu **50-cloud-init.yaml**
+<!-- ```shell
+rm -f /etc/netplan/50-cloud-init.yaml && bash -c 'echo "network:\n  version: 2\n  ethernets:\n    ens3:\n      dhcp4: false\n      addresses: [192.168.246.23/24]\n      routes:\n        - to: default\n          via: 192.168.246.1\n          metric: 100\n      nameservers:\n        addresses: [10.8.4.10,8.8.8.8]\n        search: [pcmt.local]\n      dhcp6: false" > /etc/netplan/50-cloud-init.yaml' && chmod 600 /etc/netplan/50-cloud-init.yaml && netplan apply
+``` -->
 ```shell
-rm -f /etc/netplan/50-cloud-init.yaml;nano /etc/netplan/01-netcfg.yaml;chmod 600 /etc/netplan/01-netcfg.yaml;netplan apply
+rm -f /etc/netplan/50-cloud-init.yaml && nano /etc/netplan/50-cloud-init.yaml && chmod 600 /etc/netplan/50-cloud-init.yaml && netplan apply
 ```
-Ubuntu02
-```shell
-rm -f /etc/netplan/00-installer-config.yaml;nano /etc/netplan/01-netcfg.yaml;chmod 600 /etc/netplan/01-netcfg.yaml;netplan apply
-```
+Exemplo **50-cloud-init.yaml**
 ```yaml
 network:
   version: 2
@@ -37,7 +41,35 @@ network:
     ens3:
       dhcp4: false
       # IP address/subnet mask
-      addresses: [10.8.4.21/24]
+      addresses: [192.168.246.21/24]
+      # default gatewayrebo
+      # [metric] : set priority (specify it if multiple NICs are set)
+      # lower value is higher priority
+      routes:
+        - to: default
+          via: 192.168.246.1
+          metric: 100
+      nameservers:
+        # name server to bind
+        addresses: [10.8.4.10,8.8.8.8]
+        # DNS search base
+        search: [pcmt.local]
+      dhcp6: false
+```
+Ubuntu **00-installer-config.yaml**
+```shell
+rm -f /etc/netplan/00-installer-config.yaml && nano /etc/netplan/01-netcfg.yaml && chmod 600 /etc/netplan/01-netcfg.yaml && netplan apply
+```
+Exemplo **00-installer-config.yaml**
+```yaml
+network:
+  version: 2
+  ethernets:
+    # interface name
+    enp1s0:
+      dhcp4: false
+      # IP address/subnet mask
+      addresses: [10.8.4.51/24]
       # default gatewayrebo
       # [metric] : set priority (specify it if multiple NICs are set)
       # lower value is higher priority
@@ -49,14 +81,37 @@ network:
         # name server to bind
         addresses: [10.8.4.9,8.8.8.8]
         # DNS search base
-        search: [pcmt.local,seguranca.local]
+        search: [pcmt.local]
       dhcp6: false
 ```
-Caso precisar expandir o disco no LVM
+### Caso precisar expandir o disco no LVM
 ```shell
 lv_path=$(lvdisplay | grep 'LV Path' | awk '{print $3}');lvextend -l +100%FREE -r $lv_path
 ```
-Desabilitando o IPV6 na maquina
+### Desabilitando o IPV6 na maquina
 ```shell
-echo "net.ipv6.conf.all.disable_ipv6 = 1" >> /etc/sysctl.conf;sysctl -p;ip a s;apt install -y cron;(crontab -l; echo "@reboot /sbin/sysctl -p") | sudo crontab -
+echo "net.ipv6.conf.all.disable_ipv6 = 1" >> /etc/sysctl.conf;sysctl -p;(crontab -l; echo "@reboot /sbin/sysctl -p") | crontab -
+```
+### Desabilitando o IPV6 na maquina se houver iptables
+```shell
+echo "net.bridge.bridge-nf-call-iptables=1" >> /etc/sysctl.conf;echo "net.ipv6.conf.all.disable_ipv6 = 1" >> /etc/sysctl.conf;sysctl -p;(crontab -l; echo "@reboot /sbin/sysctl -p") | crontab -
+```
+
+### Configurando Datetime
+Observar qual a região do horário timezone, neste exemplo: **America/Cuiaba**
+```shell
+timedatectl set-timezone America/Cuiaba && sed -i 's/^#NTP=/NTP=ntp.pcmt.local/' /etc/systemd/timesyncd.conf && systemctl restart systemd-timesyncd && timedatectl timesync-status
+```
+### Mudar hostname
+```shell
+hostnamectl set-hostname XXXXXX && sed -i 's/^127.0.1.1 MUDARNOME/127.0.1.1 XXXXXX/' /etc/hosts
+```
+### Travar Interface
+Geralmente devemos travar a interface em certos hypervisor, caso a interface mude ao reiniciar.
+```shell
+echo 'network: {config: disabled}' > /etc/cloud/cloud.cfg.d/99-disable-network-config.cfg
+```
+### Para Guest QEMU Harvester
+```shell
+apt install -y qemu-guest-agent && systemctl start qemu-guest-agent && systemctl enable qemu-guest-agent
 ```
