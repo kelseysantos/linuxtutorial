@@ -27,9 +27,9 @@ caminho_chave = '/root/.ssh/id_rsa'
 
 # Comando que você quer executar
 # comando = 'apt update -y'
-# comando = 'apt clean;apt update -y;apt full-upgrade -y;apt upgrade -y;apt autoremove -y'
+comando = "apt clean;apt update -y;apt full-upgrade -y;apt upgrade -y;apt autoremove -y"
 # comando = 'timedatectl'
-comando = "df -h --output=source,size,used,pcent | grep '/dev/mapper' | sort -nrk 4 | head -n 4"
+# comando = "df -h --output=source,size,used,pcent | grep '/dev/mapper' | sort -nrk 4 | head -n 4"
 
 # Executa o comando em todos os IPs
 with open(lista_ips, 'r') as file:
