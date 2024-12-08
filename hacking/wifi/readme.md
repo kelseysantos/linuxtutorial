@@ -15,5 +15,10 @@ airmon-ng check kill && airmon-ng start wlp3s0
 ```
 ![fotowifi](https://i.postimg.cc/cJV78w8s/image.png)
 
+Scanner do SSID Disponiveis:
+```shell
+airodump-ng wlp3s0
+```
+![fotoexpamle](https://i.postimg.cc/brqtQTYj/image.png)
 
-
+Agora scanneado pega um
