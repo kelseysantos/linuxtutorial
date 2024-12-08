@@ -1,5 +1,5 @@
-# Aqui vamos explorar como usar as ferramentas
-
+# FERRAMENTAS LINUX
+Vou inserir algumas ferramentas usadas para facilitar o trabalho de profissinais em TI.
 # Kelsey Santos
 
 ![card](https://github-readme-stats.vercel.app/api?username=kelseysantos&theme=default&show_icons=true)
