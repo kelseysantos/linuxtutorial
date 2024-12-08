@@ -46,6 +46,7 @@ Pronto agora é só utilizar um site para gerar um arquivo h22000 como o [HASHCA
  - Agora entre no site [www.onlinehashcrack.com](https://bit.ly/4fY5C8K) e faça o seu cadastro para upar o seu arquivo hc22000 e aguardar o resultado de uma senha.
 
 Outra forma é utilizar um banco de palavras chamado **worldlist** ou **worldpass**, juntamente com o **aircrack-ng**, no comando abaixo:
+ - Exemplo de site para baixar worldlist, [AQUI](https://github.com/danielmiessler/SecLists/tree/master/Passwords/Common-Credentials).
 ```shell
 aircrack-ng kelseysantos-01.cap -w worldlist.txt
 ```
