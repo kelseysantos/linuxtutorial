@@ -16,7 +16,7 @@ Requisitos:
 
 Abra o aplicativo para gerenciamento de disco no Ubuntu:
 
-![Disk]h(ttps://i.postimg.cc/CL4d38m3/image.png)
+![Disk](https://i.postimg.cc/CL4d38m3/image.png)
 
 ![disksoftware](https://i.postimg.cc/nLNL4GhD/image.png)
 
