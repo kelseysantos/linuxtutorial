@@ -4,8 +4,7 @@ Instalação do CEPH
 
 Clique no host que irá instalar o CEPH e faça a instalação;
 
-
-
+![https://i.postimg.cc/PJ89W2QS/image.png](https://i.postimg.cc/PJ89W2QS/image.png)
 
 ### Verificar os discos no OSD
 Listando as configurações do OSD:
@@ -39,4 +38,7 @@ ceph osd crush rule create-replicated hdd_rule default host hdd
 ```shell
 ceph osd crush rule create-replicated ssd_rule default host ssd
 ```
-
+Listando as Rules para verificar se foi aplicado:
+```shell
+ceph osd crush rule list
+```
