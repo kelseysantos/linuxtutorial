@@ -609,4 +609,4 @@ Me pague um Café - https://www.buymeacoffee.com/kelseysantos<br>
 [![Twitter](https://img.shields.io/badge/<handle>-%231DA1F2.svg?style=for-the-badge&logo=Twitter&logoColor=white)](https://twitter.com/kelseysantos)
 
 ## Autores
-![KelseySantos](https://github.com/kelseysantos/pjcproduction/blob/main/screenshot/kelseysantos.png)
+![KelseySantos](https://i.postimg.cc/tC3RmD34/kelseysantos.png)
