@@ -10,7 +10,7 @@ echo "alias update='apt clean;apt update -y;apt full-upgrade -y;apt upgrade -y;a
 ```
 Pacotes Necessários
 ```shell
-apt install -y iputils-ping mtr nano cron vim
+apt install -y iputils-ping mtr nano cron vim chrony iptables
 ```
 Desabilitar o Swap
 ```shell
