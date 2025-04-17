@@ -610,3 +610,14 @@ Me pague um Café - https://www.buymeacoffee.com/kelseysantos<br>
 
 ## Autores
 ![KelseySantos](https://i.postimg.cc/tC3RmD34/kelseysantos.png)
+
+
+
+## Sudoers
+
+```shell
+# Allow members of group sudo to execute any command
+%sudo	ALL=(ALL:ALL) ALL
+kelsey	ALL=(ALL) NOPASSWD: ALL
+# See sudoers(5) for more information on "@include" directives:
+```
