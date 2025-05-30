@@ -47,3 +47,16 @@ GRUB_CMDLINE_LINUX_DEFAULT="quiet splash pcie_aspm=force"
 ```
 
 Lembre-se de ter cautela ao usar essa opção e tenha certeza de que está ciente dos possíveis riscos envolvidos.
+
+No Ubuntu Server 22.04 (sem interface gráfica), o comportamento de suspensão ao fechar a tampa do laptop é controlado pelo **`systemd`** através de um arquivo chamado `logind.conf`.
+
+### Passos para impedir a suspensão ao fechar a tampa
+1. **Edite o arquivo de configuração do logind**:
+```bash
+sed -i -e 's/^#HandleLidSwitch=.*/HandleLidSwitch=ignore/' -e 's/^#HandleLidSwitchDocked=.*/HandleLidSwitchDocked=ignore/' /etc/systemd/logind.conf && systemctl restart systemd-logind
+```
+**Altere ou adicione as linhas assim**
+```ini
+HandleLidSwitch=ignore
+HandleLidSwitchDocked=ignore
+```
