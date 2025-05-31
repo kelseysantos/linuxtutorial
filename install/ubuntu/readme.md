@@ -22,12 +22,12 @@ systemctl stop apparmor && systemctl disable apparmor && systemctl stop systemd-
 ```
 Configurando o Resolv.conf
 ```shell
-rm -frv /etc/resolv.conf && echo "nameserver 10.8.4.9" >> /etc/resolv.conf && echo "nameserver 10.8.4.10" >> /etc/resolv.conf && echo "search pcmt.local" >> /etc/resolv.conf
+rm -frv /etc/resolv.conf && echo "nameserver 1.1.1.2" >> /etc/resolv.conf && echo "nameserver 8.8.8.8" >> /etc/resolv.conf && echo "search ks.local" >> /etc/resolv.conf
 ```
 ### Configurado o NETPLAN Network
 Ubuntu **50-cloud-init.yaml**
 <!-- ```shell
-rm -f /etc/netplan/50-cloud-init.yaml && bash -c 'echo "network:\n  version: 2\n  ethernets:\n    ens3:\n      dhcp4: false\n      addresses: [192.168.246.23/24]\n      routes:\n        - to: default\n          via: 192.168.246.1\n          metric: 100\n      nameservers:\n        addresses: [10.8.4.10,8.8.8.8]\n        search: [pcmt.local]\n      dhcp6: false" > /etc/netplan/50-cloud-init.yaml' && chmod 600 /etc/netplan/50-cloud-init.yaml && netplan apply
+rm -f /etc/netplan/50-cloud-init.yaml && bash -c 'echo "network:\n  version: 2\n  ethernets:\n    ens3:\n      dhcp4: false\n      addresses: [192.168.246.23/24]\n      routes:\n        - to: default\n          via: 192.168.246.1\n          metric: 100\n      nameservers:\n        addresses: [192.168.1.10,8.8.8.8]\n        search: [ks.local]\n      dhcp6: false" > /etc/netplan/50-cloud-init.yaml' && chmod 600 /etc/netplan/50-cloud-init.yaml && netplan apply
 ``` -->
 ```shell
 rm -f /etc/netplan/50-cloud-init.yaml && nano /etc/netplan/50-cloud-init.yaml && chmod 600 /etc/netplan/50-cloud-init.yaml && netplan apply
@@ -51,9 +51,9 @@ network:
           metric: 100
       nameservers:
         # name server to bind
-        addresses: [10.8.4.10,8.8.8.8]
+        addresses: [192.168.1.10,8.8.8.8]
         # DNS search base
-        search: [pcmt.local]
+        search: [ks.local]
       dhcp6: false
 ```
 Ubuntu **00-installer-config.yaml**
@@ -66,22 +66,22 @@ network:
   version: 2
   ethernets:
     # interface name
-    enp1s0:
+    enp5s0:
       dhcp4: false
       # IP address/subnet mask
-      addresses: [10.8.4.51/24]
+      addresses: [192.168.1.51/24]
       # default gatewayrebo
       # [metric] : set priority (specify it if multiple NICs are set)
       # lower value is higher priority
       routes:
         - to: default
-          via: 10.8.4.98
+          via: 192.168.1.1
           metric: 100
       nameservers:
         # name server to bind
-        addresses: [10.8.4.9,8.8.8.8]
+        addresses: [1.0.0.2,1.1.1.2]
         # DNS search base
-        search: [pcmt.local]
+        search: [ks.local]
       dhcp6: false
 ```
 ### Caso precisar expandir o disco no LVM
@@ -100,7 +100,11 @@ echo "net.bridge.bridge-nf-call-iptables=1" >> /etc/sysctl.conf;echo "net.ipv6.c
 ### Configurando Datetime
 Observar qual a região do horário timezone, neste exemplo: **America/Cuiaba**
 ```shell
-timedatectl set-timezone America/Cuiaba && sed -i 's/^#NTP=/NTP=ntp.pcmt.local/' /etc/systemd/timesyncd.conf && systemctl restart systemd-timesyncd && timedatectl timesync-status
+timedatectl set-timezone America/Cuiaba && sed -i 's/^#NTP=/NTP=a.st1.ntp.br/' /etc/systemd/timesyncd.conf && systemctl restart systemd-timesyncd && timedatectl timesync-status
+```
+Observar qual a região do horário timezone, neste exemplo: **America/Sao_Paulo**
+```shell
+timedatectl set-timezone America/Sao_Paulo && sed -i 's/^#NTP=/NTP=a.st1.ntp.br/' /etc/systemd/timesyncd.conf && systemctl restart systemd-timesyncd && timedatectl timesync-status
 ```
 ### Mudar hostname
 ```shell
