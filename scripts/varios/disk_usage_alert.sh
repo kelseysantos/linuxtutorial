@@ -12,7 +12,7 @@
 #   ./disk_usage_alert.sh
 
 THRESHOLD=80
-EMAIL="nikoo.a.14@gmail.com"
+EMAIL="kelseysantos@yahoo.com.br"
 
 DISK_USAGE=$(df / | grep / | awk '{print $5}' | sed 's/%//g') 
 if [ "$DISK_USAGE" -gt "$THRESHOLD" ]; then
