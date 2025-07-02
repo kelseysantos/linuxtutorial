@@ -1,3 +1,1 @@
-<Libraries Name="Chrome" Type="Dll" Path="C:\Program Files (x86)\Google\Chrome\Application\*" Method="Path" SessionType="*" />
-<Libraries Name="Oracleinstant" Type="Dll" Path="C:\oracle\instantclient\*" Method="Path"/>
-<Libraries Name="winassembly" Type="Dll" Path="%WINDIR%\ASSEMBLY\*" Method="Path" />
+sk_c0853190743ef283dde3a8250bcde6304bb9034e458caa4a
