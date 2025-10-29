@@ -106,7 +106,34 @@ Observar qual a região do horário timezone, neste exemplo: **America/Sao_Paulo
 ```shell
 timedatectl set-timezone America/Sao_Paulo && sed -i 's/^#NTP=/NTP=a.st1.ntp.br/' /etc/systemd/timesyncd.conf && systemctl restart systemd-timesyncd && timedatectl timesync-status
 ```
+### Configurando Chrony NTP
+Removendo comentários e linhas em branco do arquivo de configuração do chrony.
+```shell
+sed -i \
+  -e '/^[ \t]*#/d' \
+  -e 's/[ \t]*#.*$//' \
+  -e 's/[ \t]*$//' \
+  -e '/^$/d' \
+  /etc/chrony/chrony.conf
+```
+Adicionando servidores NTP do Brasil no arquivo de configuração do chrony.
+```shell
+sed -i \
+    -e '/^pool .*ubuntu/d' \
+    -e '$a \
+pool a.st1.ntp.br iburst maxsources 2\
+pool b.st1.ntp.br iburst maxsources 1\
+pool c.st1.ntp.br iburst maxsources 1\
+pool ntp.intra.goias.gov.br iburst maxsources 1' \
+    /etc/chrony/chrony.conf
+```
+Reiniciando o serviço do chrony para aplicar as mudanças.
+```shell
+systemctl restart chrony && chronyc sources -v && chronyc tracking
+```
+
 ### Mudar hostname
+Alterar o hostname se necessário, substituir **XXXXXX** pelo novo hostname.
 ```shell
 hostnamectl set-hostname XXXXXX && sed -i 's/^127.0.1.1 MUDARNOME/127.0.1.1 XXXXXX/' /etc/hosts
 ```
