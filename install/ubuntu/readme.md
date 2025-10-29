@@ -124,7 +124,7 @@ sed -i \
 pool a.st1.ntp.br iburst maxsources 2\
 pool b.st1.ntp.br iburst maxsources 1\
 pool c.st1.ntp.br iburst maxsources 1\
-pool ntp.intra.goias.gov.br iburst maxsources 1' \
+pool seuntp.empresa.com.br iburst maxsources 1' \
     /etc/chrony/chrony.conf
 ```
 Reiniciando o serviço do chrony para aplicar as mudanças.
