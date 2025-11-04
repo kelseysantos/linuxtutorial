@@ -4,9 +4,13 @@ Instalação Ubuntu 24.04
  - Versão da ISO: **ubuntu-24.04-live-server-amd64.iso**
 
 ### Configurações pós instalação
-Atualização do Systema
+Atualização do Systema NONINTERACTIVE
 ```shell
 echo "alias update='apt clean && apt update -y && DEBIAN_FRONTEND=noninteractive apt full-upgrade -y -o Dpkg::Options::="--force-confdef" && DEBIAN_FRONTEND=noninteractive apt autoremove -y'" >> /root/.bashrc && unset HISTFILE && apt clean && apt update -y && DEBIAN_FRONTEND=noninteractive apt full-upgrade -y -o Dpkg::Options::="--force-confdef" && DEBIAN_FRONTEND=noninteractive apt autoremove -y
+```
+Atualização do Systema
+```shell
+echo "alias update='apt clean && apt update -y && apt full-upgrade -y && apt autoremove -y'" >> /root/.bashrc && unset HISTFILE && apt clean && apt update -y && apt full-upgrade -y && apt autoremove -y
 ```
 Pacotes Necessários
 ```shell
