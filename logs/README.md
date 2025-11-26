@@ -70,7 +70,7 @@ grep -R "ErrorLog" /etc/apache2 -n
 ```
 Saida Esperada:
 
-[https://i.postimg.cc/HxMHrrLr/image.png](https://i.postimg.cc/HxMHrrLr/image.png)
+![https://i.postimg.cc/HxMHrrLr/image.png](https://i.postimg.cc/HxMHrrLr/image.png)
 
 
 ## Caso queira compactar logs antigos
